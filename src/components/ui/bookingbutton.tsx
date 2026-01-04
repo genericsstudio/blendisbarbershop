@@ -12,7 +12,7 @@ export default function BookingButton() {
   }, []);
   return (
     <Button
-      className="rounded-full"
+      className="rounded-full hover:cursor-pointer"
       data-cal-namespace="30min"
       data-cal-link="arlind-gurgurovci-8av36q/30min"
       data-cal-config='{"layout":"month_view"}'

@@ -5,6 +5,11 @@ import { Scissors, CirclePlus, Slice, Calendar } from "lucide-react";
 import CalEmbed from "@/components/ui/bookingcal";
 import PageHeader from "@/components/ui/header";
 
+const metadata = {
+  title: "Unsere Services und Preise - Blendis Barbershop",
+  description: "Entdecke unsere vielfältigen Dienstleistungen und Preise bei Blendis Barbershop.",
+};
+
 export default function ServicesPage() {
 
   const services = [

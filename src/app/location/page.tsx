@@ -9,6 +9,11 @@ import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Phone, Car, Bus, Instagram } from "lucide-react";
 import PageHeader from "@/components/ui/header";
 
+const metadata = {
+  title: "Unser Standort und Öffnungszeiten - Blendis Barbershop",
+  description: "Besuchen Sie uns an unserem zentralen Standort in Flawil.",
+};
+
 export default function LocationPage() {
   return (
     <main className="min-h-screen bg-background mt-32">

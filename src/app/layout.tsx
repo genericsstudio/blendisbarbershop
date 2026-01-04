@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Blendi's Barbershop",
   description: "Willkommen bei Blendi's Barbershop - Ihrem Rückzugsort für stilvolle Herrenfrisuren und entspannende Rasuren.",
+  robots: "noindex, nofollow",
 };
 
 export default function RootLayout({
