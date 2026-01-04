@@ -9,7 +9,7 @@ const Hero05 = () => {
   return (
     <div className="min-h-screen flex items-center justify-center overflow-hidden">
       <div className="grid grid-cols-3 gap-4 w-screen h-screen">
-        <div className="col-span-2 row-span-1 relative">
+        <div className="col-span-3 lg:col-span-1 relative">
           <Image
             src="/heropic.jpeg"
             alt="Barbershop 1"
@@ -17,7 +17,7 @@ const Hero05 = () => {
             className="rounded-xl object-cover"
           />
         </div>
-        <div className="col-span-1 row-span-2 relative">
+        <div className="col-span-3 lg:col-span-1 relative">
           <Image
             src="/heropic2.jpeg"
             alt="Barbershop 2"
@@ -25,7 +25,7 @@ const Hero05 = () => {
             className="object-cover rounded-xl"
           />
         </div>
-        <div className="col-span-2 row-span-1 relative">
+        <div className="col-span-3 lg:col-span-1 relative">
           <Image
             src="/heropic3.jpeg"
             alt="Barbershop 3"

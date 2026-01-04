@@ -19,7 +19,10 @@ export default function LocationPage() {
     <main className="min-h-screen bg-background mt-32">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
-          <PageHeader title="Unser Standort und Öffnungszeiten" description="Besuchen Sie uns an unserem zentralen Standort" />
+          <PageHeader
+            title="Unser Standort und Öffnungszeiten"
+            description="Besuchen Sie uns an unserem zentralen Standort"
+          />
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Address & Contact Info */}
@@ -75,14 +78,14 @@ export default function LocationPage() {
                     <span>Dienstag</span>
                     <p className="text-xs text-muted-foreground">Ohne Termin</p>
                     <Badge variant="secondary" className="text-right">
-                      10:00 - 20:00
+                      10:00 - 12:00 <br /> 13:00 - 19:00
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span>Mittwoch</span>
                     <p className="text-xs text-muted-foreground">Ohne Termin</p>
                     <Badge variant="secondary" className="text-right">
-                      10:00 - 20:00
+                      10:00 - 12:00 <br /> 13:00 - 19:00
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
@@ -91,7 +94,7 @@ export default function LocationPage() {
                       Nur mit Termin
                     </p>
                     <Badge variant="secondary" className="text-right">
-                      10:00 - 20:00
+                      10:00 - 12:00 <br /> 13:00 - 19:00
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
@@ -100,7 +103,7 @@ export default function LocationPage() {
                       Nur mit Termin
                     </p>
                     <Badge variant="secondary" className="text-right">
-                      10:00 - 20:00
+                      10:00 - 12:00 <br /> 13:00 - 19:00
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
@@ -109,7 +112,7 @@ export default function LocationPage() {
                       Nur mit Termin
                     </p>
                     <Badge variant="secondary" className="text-right">
-                      10:00 - 20:00
+                      10:00 - 13:00 <br /> 14:00 - 17:00
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
