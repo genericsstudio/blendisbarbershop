@@ -12,7 +12,9 @@ export default function BookingButton() {
   }, []);
 
   return (
-    <Button asChild className="rounded-full hover:cursor-pointer">
+    <Button asChild
+    variant="secondary"
+    className="rounded-full hover:cursor-pointer">
       <a
         href="https://app.cal.eu/blendis-barbershop/30min"
         target="_blank"

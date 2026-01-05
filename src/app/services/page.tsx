@@ -1,24 +1,18 @@
-"use client"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Scissors, CirclePlus, Slice, Calendar } from "lucide-react";
 import PageHeader from "@/components/ui/header";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import { Metadata } from "next";
 
-const metadata = {
-  title: "Unsere Services und Preise - Blendis Barbershop",
-  description: "Entdecke unsere vielfältigen Dienstleistungen und Preise bei Blendis Barbershop.",
+
+export const metadata: Metadata = {
+  title: "Services & Preise",
+  description:
+    "Unsere Services bei Blendis Barbershop Flawil: Haarschnitt, Bartpflege, Haar- & Bartschnitt. Transparente Preise, professionelle Qualität.",
 };
 
-export default function ServicesPage() {
 
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "30min" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
+export default function ServicesPage() {
 
   const services = [
     {
@@ -56,7 +50,7 @@ export default function ServicesPage() {
           {services.map((service, idx) => (
             <Card
               key={service.title}
-              className="shadow-lg hover:shadow-xl transition-shadow"
+              className="transition-shadow"
             >
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -103,6 +97,12 @@ export default function ServicesPage() {
                 <Calendar className="h-5 w-5" />
                 Online Termin buchen
               </CardTitle>
+              <CardDescription>
+                Buche deinen Termin ganz einfach online über unseren Kalender.
+              </CardDescription>
+              <CardDescription>
+                Probleme? Ruf uns an unter 076 423 33 22
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <iframe

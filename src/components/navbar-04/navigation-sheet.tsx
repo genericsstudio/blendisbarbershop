@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 
 export const NavigationSheet = () => {
@@ -16,7 +15,6 @@ export const NavigationSheet = () => {
         <SheetTitle className="sr-only">Navigation</SheetTitle>
         <SheetHeader>
           <SheetDescription>
-            <Logo />
           </SheetDescription>
         </SheetHeader>
           <NavMenu orientation="vertical" className="px-4" />

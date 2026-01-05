@@ -12,6 +12,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
     <NavigationMenuList className="gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
       <NavigationMenuItem>
         <NavigationMenuLink
+          className="rounded-full px-4"
           asChild
           onClick={(e) => {
             // Blur the link to remove focus/hover state after click
@@ -25,6 +26,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink
+          className="rounded-full px-4"
           asChild
           onClick={(e) => {
             // Blur the link to remove focus/hover state after click

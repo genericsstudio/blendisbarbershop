@@ -14,9 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Blendi's Barbershop",
-  description: "Willkommen bei Blendi's Barbershop - Ihrem Rückzugsort für stilvolle Herrenfrisuren und entspannende Rasuren.",
-  robots: "noindex, nofollow",
+  metadataBase: new URL("https://blendisbarbershop.ch"),
+  title: {
+    default: "Blendis Barbershop Flawil",
+    template: "%s | Blendis Barbershop Flawil",
+  },
+  description:
+    "Blendis Barbershop in Flawil – professionelle Haarschnitte, Bartpflege und klassische Barber-Services. Jetzt Termin online buchen.",
 };
 
 export default function RootLayout({

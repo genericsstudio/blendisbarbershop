@@ -8,10 +8,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { MapPin, Clock, Phone, Car, Bus, Instagram } from "lucide-react";
 import PageHeader from "@/components/ui/header";
+import { Metadata } from "next";
 
-const metadata = {
-  title: "Unser Standort und Öffnungszeiten - Blendis Barbershop",
-  description: "Besuchen Sie uns an unserem zentralen Standort in Flawil.",
+export const metadata: Metadata = {
+  title: "Standort & Anfahrt in Flawil",
+  description:
+    "Blendis Barbershop in Flawil – Adresse, Öffnungszeiten und Anfahrt. Zentral gelegen, einfach erreichbar. Jetzt Termin buchen.",
 };
 
 export default function LocationPage() {
@@ -24,7 +26,7 @@ export default function LocationPage() {
             description="Besuchen Sie uns an unserem zentralen Standort"
           />
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4">
             {/* Address & Contact Info */}
             <Card>
               <CardHeader>
@@ -141,7 +143,7 @@ export default function LocationPage() {
           </div>
 
           {/* Map Placeholder */}
-          <Card className="mt-8 overflow-hidden">
+          <Card className="mt-4 overflow-hidden">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="h-5 w-5" />
@@ -163,7 +165,7 @@ export default function LocationPage() {
           </Card>
 
           {/* Transportation & Parking */}
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
