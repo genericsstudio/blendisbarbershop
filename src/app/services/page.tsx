@@ -2,8 +2,9 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Scissors, CirclePlus, Slice, Calendar } from "lucide-react";
-import CalEmbed from "@/components/ui/bookingcal";
 import PageHeader from "@/components/ui/header";
+import Cal, { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 
 const metadata = {
   title: "Unsere Services und Preise - Blendis Barbershop",
@@ -11,6 +12,13 @@ const metadata = {
 };
 
 export default function ServicesPage() {
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+  }, []);
 
   const services = [
     {
@@ -59,7 +67,9 @@ export default function ServicesPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="mb-4">{service.description}</CardDescription>
+                <CardDescription className="mb-4">
+                  {service.description}
+                </CardDescription>
                 <Table>
                   <TableBody>
                     {service.prices.map((price, i) => (
@@ -77,8 +87,7 @@ export default function ServicesPage() {
                             </TableCell>
                           </>
                         ) : (
-                          <TableCell className="text-right text-muted-foreground">
-                          </TableCell>
+                          <TableCell className="text-right text-muted-foreground"></TableCell>
                         )}
                       </TableRow>
                     ))}
@@ -96,7 +105,11 @@ export default function ServicesPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CalEmbed />
+              <iframe
+                src="https://app.cal.eu/blendis-barbershop/30min?embed_domain=blendisbarbershop.ch&embed_type=inline"
+                width="100%"
+                height="700"
+              />
             </CardContent>
           </Card>
         </div>

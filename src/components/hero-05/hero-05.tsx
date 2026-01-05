@@ -8,13 +8,13 @@ import BookingButton from "../ui/bookingbutton";
 const Hero05 = () => {
   return (
     <div className="min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="grid grid-cols-3 gap-4 w-screen h-screen">
+      <div className="grid grid-cols-3 w-screen h-screen">
         <div className="col-span-3 lg:col-span-1 relative">
           <Image
             src="/heropic.jpeg"
             alt="Barbershop 1"
             fill
-            className="rounded-xl object-cover"
+            className="object-cover"
           />
         </div>
         <div className="col-span-3 lg:col-span-1 relative">
@@ -22,7 +22,7 @@ const Hero05 = () => {
             src="/heropic2.jpeg"
             alt="Barbershop 2"
             fill
-            className="object-cover rounded-xl"
+            className="object-cover"
           />
         </div>
         <div className="col-span-3 lg:col-span-1 relative">
@@ -30,7 +30,7 @@ const Hero05 = () => {
             src="/heropic3.jpeg"
             alt="Barbershop 3"
             fill
-            className="object-cover rounded-xl"
+            className="object-cover"
           />
         </div>
         <div className="absolute inset-0 flex flex-col justify-center items-center">
