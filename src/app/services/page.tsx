@@ -30,7 +30,7 @@ export default function ServicesPage() {
       description:
         "Professioneller Haarschnitt für Kinder unter 16 Jahren.",
       prices: [
-        { label: "Haarschnitt", ageGroup: "", price: "CHF 20" },
+        { label: "Haarschnitt", ageGroup: "", price: "CHF 25" },
       ],
     },
   ];
