@@ -16,7 +16,7 @@ export default function BookingButton() {
     variant="secondary"
     className="rounded-full hover:cursor-pointer">
       <a
-        href="https://app.cal.eu/blendis-barbershop/30min"
+        href="https://app.cal.eu/blendis-barbershop/"
         target="_blank"
         rel="noopener noreferrer"
       >

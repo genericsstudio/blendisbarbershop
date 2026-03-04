@@ -107,7 +107,7 @@ export default function ServicesPage() {
             </CardHeader>
             <CardContent>
               <iframe
-                src="https://app.cal.eu/blendis-barbershop/30min?embed_domain=blendisbarbershop.ch&embed_type=inline"
+                src="https://app.cal.eu/blendis-barbershop/"
                 width="100%"
                 height="700"
               />
