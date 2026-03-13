@@ -139,29 +139,12 @@ export default function Home() {
           {/* Content */}
           <div className="relative z-10 text-center w-full">
             {/* Logo */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-10">
               <Logo
-                className="w-48 md:w-72 h-auto"
+                className="w-64 md:w-96 h-auto"
                 style={{ filter: "invert(1)", opacity: 0.9 }}
               />
             </div>
-
-            {/* Top rule */}
-            <div className="flex items-center justify-center gap-4 mb-10">
-              <div className="h-px w-10 bg-primary/50" />
-              <span className="text-[9px] tracking-[0.5em] text-primary/60 uppercase">
-                Barbershop · Flawil
-              </span>
-              <div className="h-px w-10 bg-primary/50" />
-            </div>
-
-            {/* Name */}
-            <h1 className="font-display text-[3.5rem] md:text-[4rem] lg:text-[4.5rem] font-bold leading-none tracking-[0.06em] text-foreground mb-3">
-              BLENDIS
-            </h1>
-            <p className="font-display text-base md:text-lg tracking-[0.55em] text-primary uppercase italic mb-10">
-              Barbershop
-            </p>
 
             {/* Bottom rule */}
             <div className="flex items-center justify-center gap-4 mb-12">
