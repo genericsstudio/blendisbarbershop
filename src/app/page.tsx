@@ -60,7 +60,7 @@ const hours = [
   { day: "Dienstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Walk-in" },
   { day: "Mittwoch", hours: "10:00–12:00  ·  13:00–19:00", note: "Walk-in" },
   { day: "Donnerstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Termin" },
-  { day: "Freitag", hours: "10:00–12:00  ·  13:00–19:00", note: "Termin" },
+  { day: "Freitag", hours: "10:00–13:00  ·  14:00–19:00", note: "Termin" },
   { day: "Samstag", hours: "10:00–13:00  ·  14:00–17:00", note: "Termin" },
   { day: "Sonntag", hours: null, note: null },
 ];
