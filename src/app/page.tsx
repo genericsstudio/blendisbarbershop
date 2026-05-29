@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Phone, MapPin, Instagram, Car, Train } from "lucide-react";
 import Logo from "./components/logo";
 
@@ -404,6 +405,14 @@ export default function Home() {
           © {new Date().getFullYear()} Blendis Barbershop &nbsp;·&nbsp; Flawil,
           Schweiz
         </p>
+        <div className="mt-3">
+          <Link
+            href="/agb"
+            className="text-[9px] tracking-[0.4em] text-muted-foreground/60 uppercase hover:text-primary transition-colors"
+          >
+            AGB
+          </Link>
+        </div>
       </footer>
     </main>
   );
