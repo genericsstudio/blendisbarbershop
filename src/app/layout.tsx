@@ -22,11 +22,11 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL("https://blendisbarbershop.ch"),
   title: {
-    default: "Blendis Barbershop Flawil – Haarschnitt & Bartpflege",
-    template: "%s | Blendis Barbershop Flawil",
+    default: "Blendi's Barbershop Flawil – Haarschnitt & Bartpflege",
+    template: "%s | Blendi's Barbershop Flawil",
   },
   description:
-    "Blendis Barbershop in Flawil (SG) – professionelle Herrenhaarschnitte, Bartschnitt und klassische Barber-Services. Online Termin buchen. Rösslistrasse 12, 9230 Flawil.",
+    "Blendi's Barbershop in Flawil (SG) – professionelle Herrenhaarschnitte, Bartschnitt und klassische Barber-Services. Online Termin buchen. Rösslistrasse 12, 9230 Flawil.",
   keywords: [
     "Barbershop Flawil",
     "Barbershop St. Gallen",
@@ -34,18 +34,19 @@ export const metadata: Metadata = {
     "Bartpflege Flawil",
     "Barber Flawil",
     "Herrenfriseur Flawil",
+    "Blendi's Barbershop",
     "Blendis Barbershop",
     "Haarschnitt 9230",
     "Termin buchen Barbershop",
   ],
-  authors: [{ name: "Blendis Barbershop" }],
-  creator: "Blendis Barbershop",
+  authors: [{ name: "Blendi's Barbershop" }],
+  creator: "Blendi's Barbershop",
   openGraph: {
     type: "website",
     locale: "de_CH",
     url: "https://blendisbarbershop.ch",
-    siteName: "Blendis Barbershop Flawil",
-    title: "Blendis Barbershop Flawil – Haarschnitt & Bartpflege",
+    siteName: "Blendi's Barbershop Flawil",
+    title: "Blendi's Barbershop Flawil – Haarschnitt & Bartpflege",
     description:
       "Professionelle Herrenhaarschnitte und Bartpflege in Flawil (SG). Jetzt online Termin buchen.",
     images: [
@@ -53,13 +54,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Blendis Barbershop Flawil",
+        alt: "Blendi's Barbershop Flawil",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blendis Barbershop Flawil – Haarschnitt & Bartpflege",
+    title: "Blendi's Barbershop Flawil – Haarschnitt & Bartpflege",
     description:
       "Professionelle Herrenhaarschnitte und Bartpflege in Flawil (SG). Jetzt online Termin buchen.",
     images: ["/opengraph-image.png"],
@@ -77,6 +78,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://blendisbarbershop.ch",
   },
+  verification: {
+    google: "UZajhpF9SKqBcn4rxEU2eNFREHCOQwGXYWkTdNxhND8",
+  },
 };
 
 export default function RootLayout({
@@ -86,7 +90,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="dark">
-    <meta name="google-site-verification" content="UZajhpF9SKqBcn4rxEU2eNFREHCOQwGXYWkTdNxhND8" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >

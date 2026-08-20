@@ -6,7 +6,7 @@ import Logo from "./components/logo";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
-  name: "Blendis Barbershop",
+  name: "Blendi's Barbershop",
   image: "https://blendisbarbershop.ch/opengraph-image.png",
   url: "https://blendisbarbershop.ch",
   telephone: "+41764233322",
@@ -58,37 +58,13 @@ const services = {
 
 const hours = [
   { day: "Montag", hours: null, note: null },
-  { day: "Dienstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Walk-in" },
-  { day: "Mittwoch", hours: "10:00–12:00  ·  13:00–19:00", note: "Walk-in" },
+  { day: "Dienstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
+  { day: "Mittwoch", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
   { day: "Donnerstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Termin" },
   { day: "Freitag", hours: "10:00–13:00  ·  14:00–19:00", note: "Termin" },
   { day: "Samstag", hours: "10:00–13:00  ·  14:00–17:00", note: "Termin" },
   { day: "Sonntag", hours: null, note: null },
 ];
-
-function Divider({ label }: { label?: string }) {
-  return (
-    <div className="flex items-center gap-5 my-14">
-      <div className="h-px flex-1 bg-primary/20" />
-      {label ? (
-        <span className="text-[10px] tracking-[0.45em] text-primary/50 uppercase">
-          {label}
-        </span>
-      ) : (
-        <span className="text-primary/40 text-xs">✦</span>
-      )}
-      <div className="h-px flex-1 bg-primary/20" />
-    </div>
-  );
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-[10px] tracking-[0.5em] text-primary/60 uppercase mb-3">
-      {children}
-    </p>
-  );
-}
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -106,6 +82,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <h1 className="sr-only">
+        Blendi&apos;s Barbershop Flawil – Herrenhaarschnitt & Bartpflege
+      </h1>
+
       {/* ── HERO ─────────────────────────────────────────── */}
       <section
         id="hero"
@@ -115,7 +95,7 @@ export default function Home() {
         <div className="relative hidden md:block overflow-hidden">
           <Image
             src="/heropic.jpeg"
-            alt=""
+            alt="Herrenhaarschnitt bei Blendi's Barbershop in Flawil"
             fill
             className="object-cover scale-105"
             priority
@@ -124,7 +104,7 @@ export default function Home() {
         </div>
 
         {/* Center panel */}
-        <div className="relative flex flex-col items-center justify-center bg-background px-10 py-20 border-x border-primary/15">
+        <div className="relative flex flex-col items-center justify-center bg-background px-10 py-20">
           {/* Mobile: faint background image */}
           <div className="absolute inset-0 md:hidden overflow-hidden">
             <Image
@@ -150,7 +130,7 @@ export default function Home() {
             {/* Bottom rule */}
             <div className="flex items-center justify-center gap-4 mb-12">
               <div className="h-px w-10 bg-primary/50" />
-              <span className="text-[9px] tracking-[0.4em] text-muted-foreground uppercase">
+              <span className="text-xs tracking-widest text-muted-foreground">
                 9230 Flawil
               </span>
               <div className="h-px w-10 bg-primary/50" />
@@ -161,7 +141,7 @@ export default function Home() {
               href="https://app.cal.eu/blendis-barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-primary/60 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-3 text-[10px] tracking-[0.4em] uppercase"
+              className="inline-block bg-primary text-primary-foreground hover:bg-primary/85 transition-colors duration-300 px-8 py-3 text-sm tracking-wide"
             >
               Termin buchen
             </a>
@@ -177,7 +157,7 @@ export default function Home() {
         <div className="relative hidden md:block overflow-hidden">
           <Image
             src="/heropic2.jpeg"
-            alt=""
+            alt="Barbershop-Interieur von Blendi's Barbershop in Flawil"
             fill
             className="object-cover scale-105"
             priority
@@ -190,69 +170,68 @@ export default function Home() {
       <section id="services" className="py-24 px-6">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-14">
-            <SectionLabel>Unsere</SectionLabel>
             <SectionHeading>Services & Preise</SectionHeading>
           </div>
 
-          {/* Adults */}
-          <div className="mb-10">
-            <div className="flex items-center gap-4 mb-7">
-              <div className="h-px flex-1 bg-primary/20" />
-              <span className="text-[9px] tracking-[0.45em] text-primary/55 uppercase">
-                Erwachsene · ab 16
-              </span>
-              <div className="h-px flex-1 bg-primary/20" />
+          <div className="space-y-10">
+            {/* Adults */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-display text-2xl md:text-3xl text-foreground">
+                  Erwachsene
+                </h3>
+                <span className="text-xs text-primary border border-primary/40 rounded-full px-3 py-1">
+                  ab 16
+                </span>
+              </div>
+              <div className="space-y-0">
+                {services.adults.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex items-baseline justify-between py-4 border-b border-primary/10 group"
+                  >
+                    <span className="text-foreground/85 group-hover:text-foreground transition-colors">
+                      {item.name}
+                    </span>
+                    <span className="text-primary font-medium tracking-widest text-sm">
+                      {item.price}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-0">
-              {services.adults.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-baseline justify-between py-4 border-b border-primary/10 group"
-                >
-                  <span className="text-foreground/85 group-hover:text-foreground transition-colors">
-                    {item.name}
-                  </span>
-                  <span className="text-primary font-medium tracking-widest text-sm">
-                    {item.price}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Kids */}
-          <div>
-            <div className="flex items-center gap-4 mb-7">
-              <div className="h-px flex-1 bg-primary/20" />
-              <span className="text-[9px] tracking-[0.45em] text-primary/55 uppercase">
-                Kinder · unter 16
-              </span>
-              <div className="h-px flex-1 bg-primary/20" />
-            </div>
-            <div className="space-y-0">
-              {services.kids.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-baseline justify-between py-4 border-b border-primary/10"
-                >
-                  <span className="text-foreground/85">{item.name}</span>
-                  <span className="text-primary font-medium tracking-widest text-sm">
-                    {item.price}
-                  </span>
-                </div>
-              ))}
+            {/* Kids */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-display text-2xl md:text-3xl text-foreground">
+                  Kinder
+                </h3>
+                <span className="text-xs text-primary border border-primary/40 rounded-full px-3 py-1">
+                  unter 16
+                </span>
+              </div>
+              <div className="space-y-0">
+                {services.kids.map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex items-baseline justify-between py-4 border-b border-primary/10"
+                  >
+                    <span className="text-foreground/85">{item.name}</span>
+                    <span className="text-primary font-medium tracking-widest text-sm">
+                      {item.price}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── BOOKING ──────────────────────────────────────── */}
-      <section
-        id="termin"
-        className="py-28 px-6 bg-card border-y border-primary/12"
-      >
+      <section id="termin" className="py-28 px-6 bg-card">
         <div className="max-w-lg mx-auto text-center">
-          <SectionLabel>Jetzt</SectionLabel>
           <SectionHeading>Termin buchen</SectionHeading>
           <p className="text-muted-foreground mt-5 mb-12 leading-relaxed">
             Buche bequem online oder ruf uns einfach an.
@@ -262,13 +241,13 @@ export default function Home() {
               href="https://app.cal.eu/blendis-barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-primary text-primary-foreground hover:bg-primary/85 transition-colors px-10 py-3.5 text-[10px] tracking-[0.4em] uppercase w-full sm:w-auto text-center"
+              className="inline-block bg-primary text-primary-foreground hover:bg-primary/85 transition-colors px-10 py-3.5 text-sm tracking-wide w-full sm:w-auto text-center"
             >
               Online buchen
             </a>
             <a
               href="tel:+41764233322"
-              className="inline-flex items-center justify-center gap-2.5 border border-primary/35 text-foreground/80 hover:border-primary hover:text-primary transition-all px-10 py-3.5 text-[10px] tracking-[0.4em] uppercase w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 border border-primary/35 text-foreground/80 hover:border-primary hover:text-primary transition-all px-10 py-3.5 text-sm tracking-wide w-full sm:w-auto"
             >
               <Phone className="w-3 h-3" />
               076 423 33 22
@@ -281,7 +260,6 @@ export default function Home() {
       <section id="oeffnungszeiten" className="py-24 px-6">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-14">
-            <SectionLabel>Wann wir für euch da sind</SectionLabel>
             <SectionHeading>Öffnungszeiten</SectionHeading>
           </div>
 
@@ -300,7 +278,7 @@ export default function Home() {
                   {item.hours ?? "Geschlossen"}
                 </span>
                 {item.note ? (
-                  <span className="text-[9px] tracking-[0.4em] text-primary/60 uppercase w-16 text-right hidden sm:block">
+                  <span className="text-xs text-primary/70 w-16 text-right hidden sm:block">
                     {item.note}
                   </span>
                 ) : (
@@ -309,21 +287,13 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          <p className="mt-8 text-[10px] text-muted-foreground text-center tracking-[0.3em] uppercase">
-            Di–Mi Walk-in &nbsp;·&nbsp; Do–Sa nur mit Termin
-          </p>
         </div>
       </section>
 
       {/* ── CONTACT ──────────────────────────────────────── */}
-      <section
-        id="kontakt"
-        className="py-24 px-6 bg-card border-y border-primary/12"
-      >
+      <section id="kontakt" className="py-24 px-6 bg-card">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-14">
-            <SectionLabel>Finde uns</SectionLabel>
             <SectionHeading>Kontakt & Standort</SectionHeading>
           </div>
 
@@ -362,9 +332,9 @@ export default function Home() {
 
             {/* Directions */}
             <div className="space-y-5">
-              <p className="text-[9px] tracking-[0.45em] text-primary/55 uppercase mb-5">
+              <h4 className="text-sm font-medium text-primary/80 mb-5">
                 Anreise
-              </p>
+              </h4>
               <div className="flex items-start gap-3.5">
                 <Train className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                 <p className="text-sm text-foreground/75 leading-relaxed">
@@ -382,14 +352,14 @@ export default function Home() {
           </div>
 
           {/* Map */}
-          <div className="overflow-hidden border border-primary/15 h-64 md:h-80">
+          <div className="overflow-hidden border border-primary/15 bg-card h-64 md:h-80">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2679.8!2d9.1089!3d47.4089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479b0b0b0b0b0b0b%3A0x0!2sR%C3%B6sslistrasse%2013%2C%209230%20Flawil%2C%20Switzerland!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
               height="100%"
               style={{
                 border: 0,
-                filter: "grayscale(1) invert(0.88) sepia(0.15) contrast(0.92)",
+                filter: "grayscale(1) invert(0.92) contrast(0.9) brightness(0.95)",
               }}
               allowFullScreen
               loading="lazy"
@@ -400,18 +370,102 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────── */}
-      <footer className="py-10 px-6 text-center border-t border-primary/12">
-        <p className="text-[9px] tracking-[0.45em] text-muted-foreground uppercase">
-          © {new Date().getFullYear()} Blendis Barbershop &nbsp;·&nbsp; Flawil,
-          Schweiz
-        </p>
-        <div className="mt-3">
-          <Link
-            href="/agb"
-            className="text-[9px] tracking-[0.4em] text-muted-foreground/60 uppercase hover:text-primary transition-colors"
-          >
-            AGB
-          </Link>
+      <footer className="border-t border-primary/12 bg-card">
+        <div className="max-w-4xl mx-auto px-6 py-16 grid gap-10 sm:grid-cols-3">
+          {/* Brand */}
+          <div>
+            <Logo
+              className="w-32 h-auto mb-4"
+              style={{ filter: "invert(1)", opacity: 0.9 }}
+            />
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Rösslistrasse 12
+              <br />
+              9230 Flawil, Schweiz
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="text-sm font-medium text-primary/80 mb-4">
+              Navigation
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="#services"
+                  className="text-foreground/75 hover:text-primary transition-colors"
+                >
+                  Services & Preise
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#termin"
+                  className="text-foreground/75 hover:text-primary transition-colors"
+                >
+                  Termin buchen
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#oeffnungszeiten"
+                  className="text-foreground/75 hover:text-primary transition-colors"
+                >
+                  Öffnungszeiten
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#kontakt"
+                  className="text-foreground/75 hover:text-primary transition-colors"
+                >
+                  Kontakt
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-sm font-medium text-primary/80 mb-4">
+              Kontakt
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="tel:+41764233322"
+                  className="flex items-center gap-2 text-foreground/75 hover:text-primary transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 shrink-0" />
+                  076 423 33 22
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/blendisbarbershop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-foreground/75 hover:text-primary transition-colors"
+                >
+                  <Instagram className="w-3.5 h-3.5 shrink-0" />
+                  @blendisbarbershop
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="sm:col-span-3 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 mt-8">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Blendi&apos;s Barbershop
+            </p>
+            <Link
+              href="/agb"
+              className="text-sm text-foreground/80 hover:text-primary transition-colors"
+            >
+              AGB
+            </Link>
+          </div>
         </div>
       </footer>
     </main>
