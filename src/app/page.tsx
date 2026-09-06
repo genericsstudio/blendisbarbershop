@@ -1,7 +1,99 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, MapPin, Instagram, Car, Train } from "lucide-react";
+import {
+  Phone,
+  MapPin,
+  Instagram,
+  Car,
+  Train,
+  Star,
+  Navigation,
+} from "lucide-react";
 import Logo from "./components/logo";
+
+const FULL_ADDRESS = "Rösslistrasse 13, 9230 Flawil, Schweiz";
+const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  FULL_ADDRESS
+)}`;
+
+// Update these by hand when the Google rating changes.
+const GOOGLE_RATING = 4.8;
+const GOOGLE_REVIEW_COUNT = 92;
+const GOOGLE_REVIEWS_URL = `https://www.google.com/search?q=${encodeURIComponent(
+  "Blendi's Barbershop Flawil Bewertungen"
+)}`;
+
+const services = {
+  adults: [
+    { name: "Haarschnitt", price: "CHF 30" },
+    { name: "Bartschnitt", price: "CHF 20" },
+    { name: "Haar- & Bartschnitt", price: "CHF 40" },
+    { name: "Haar- & Bartschnitt + Bartfärben", price: "CHF 60" },
+  ],
+  kids: [{ name: "Haarschnitt", price: "CHF 25" }],
+};
+
+const hours = [
+  { day: "Montag", hours: null, note: null },
+  { day: "Dienstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
+  { day: "Mittwoch", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
+  { day: "Donnerstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Termin" },
+  { day: "Freitag", hours: "10:00–13:00  ·  14:00–19:00", note: "Termin" },
+  { day: "Samstag", hours: "10:00–13:00  ·  14:00–17:00", note: "Termin" },
+  { day: "Sonntag", hours: null, note: null },
+];
+
+const faq = [
+  {
+    q: "Wie kann ich bezahlen?",
+    a: "Aktuell ausschliesslich bar in CHF, direkt nach der Dienstleistung vor Ort.",
+  },
+  {
+    q: "Ich brauche kurzfristig einen Haarschnitt – geht das ohne Termin?",
+    a: "Dienstag und Mittwoch kannst du ohne Termin vorbeikommen. Donnerstag bis Samstag arbeiten wir ausschliesslich nach Terminvereinbarung.",
+  },
+  {
+    q: "Was passiert, wenn ich meinen Termin nicht wahrnehmen kann?",
+    a: "Bitte sag uns mindestens 24 Stunden vorher Bescheid. Bei kurzfristigen Absagen oder Nichterscheinen behalten wir uns vor, den Termin vollständig zu berechnen.",
+  },
+  {
+    q: "Was, wenn ich zu spät zum Termin komme?",
+    a: "Bei Verspätung kann sich die Behandlungsdauer verkürzen. Bei erheblicher Verspätung behalten wir uns vor, den Termin abzusagen und wie ein Nichterscheinen zu berechnen.",
+  },
+  {
+    q: "Gibt es Gutscheine?",
+    a: "Ja, unsere Gutscheine sind übertragbar und für alle Services einlösbar. Eine Barauszahlung ist nicht möglich.",
+  },
+];
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="font-display text-4xl md:text-5xl font-bold tracking-wide text-foreground">
+      {children}
+    </h2>
+  );
+}
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-1" aria-hidden="true">
+      {Array.from({ length: 5 }).map((_, i) => {
+        const fill = Math.max(0, Math.min(1, rating - i)) * 100;
+        return (
+          <div key={i} className="relative w-5 h-5">
+            <Star className="absolute inset-0 w-5 h-5 text-primary/25" />
+            <div
+              className="absolute inset-0 overflow-hidden"
+              style={{ width: `${fill}%` }}
+            >
+              <Star className="w-5 h-5 fill-primary text-primary" />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -13,7 +105,7 @@ const jsonLd = {
   priceRange: "CHF 20–60",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Rösslistrasse 12",
+    streetAddress: "Rösslistrasse 13",
     addressLocality: "Flawil",
     postalCode: "9230",
     addressCountry: "CH",
@@ -44,42 +136,36 @@ const jsonLd = {
     },
   ],
   sameAs: ["https://www.instagram.com/blendisbarbershop"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: GOOGLE_RATING,
+    reviewCount: GOOGLE_REVIEW_COUNT,
+  },
 };
 
-const services = {
-  adults: [
-    { name: "Haarschnitt", price: "CHF 30" },
-    { name: "Bartschnitt", price: "CHF 20" },
-    { name: "Haar- & Bartschnitt", price: "CHF 40" },
-    { name: "Haar- & Bartschnitt + Bartfärben", price: "CHF 60" },
-  ],
-  kids: [{ name: "Haarschnitt", price: "CHF 25" }],
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
 };
-
-const hours = [
-  { day: "Montag", hours: null, note: null },
-  { day: "Dienstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
-  { day: "Mittwoch", hours: "10:00–12:00  ·  13:00–19:00", note: "Ohne Termin" },
-  { day: "Donnerstag", hours: "10:00–12:00  ·  13:00–19:00", note: "Termin" },
-  { day: "Freitag", hours: "10:00–13:00  ·  14:00–19:00", note: "Termin" },
-  { day: "Samstag", hours: "10:00–13:00  ·  14:00–17:00", note: "Termin" },
-  { day: "Sonntag", hours: null, note: null },
-];
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="font-display text-4xl md:text-5xl font-bold tracking-wide text-foreground">
-      {children}
-    </h2>
-  );
-}
 
 export default function Home() {
   return (
-    <main className="bg-background text-foreground">
+    <main className="bg-background text-foreground pb-16 md:pb-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <h1 className="sr-only">
@@ -89,7 +175,7 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <section
         id="hero"
-        className="h-screen grid grid-cols-1 md:grid-cols-[1fr_400px_1fr] lg:grid-cols-[1fr_460px_1fr]"
+        className="min-h-screen grid grid-cols-1 md:grid-cols-[1fr_400px_1fr] lg:grid-cols-[1fr_460px_1fr]"
       >
         {/* Left image – desktop only */}
         <div className="relative hidden md:block overflow-hidden">
@@ -120,20 +206,11 @@ export default function Home() {
           {/* Content */}
           <div className="relative z-10 text-center w-full">
             {/* Logo */}
-            <div className="flex justify-center mb-10">
+            <div className="flex justify-center mb-8">
               <Logo
                 className="w-64 md:w-96 h-auto"
                 style={{ filter: "invert(1)", opacity: 0.9 }}
               />
-            </div>
-
-            {/* Bottom rule */}
-            <div className="flex items-center justify-center gap-4 mb-12">
-              <div className="h-px w-10 bg-primary/50" />
-              <span className="text-xs tracking-widest text-muted-foreground">
-                9230 Flawil
-              </span>
-              <div className="h-px w-10 bg-primary/50" />
             </div>
 
             {/* CTA */}
@@ -145,12 +222,33 @@ export default function Home() {
             >
               Termin buchen
             </a>
+
+            {/* Secondary CTA */}
+            <div className="mt-5">
+              <a
+                href="tel:+41764233322"
+                className="inline-flex items-center gap-2 text-xs tracking-wide text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Phone className="w-3 h-3" />
+                oder anrufen
+              </a>
+            </div>
+
+            {/* Google Rating */}
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-col items-center gap-1.5 mt-8 group"
+            >
+              <StarRating rating={GOOGLE_RATING} />
+              <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                {GOOGLE_RATING.toFixed(1).replace(".", ",")} · {GOOGLE_REVIEW_COUNT}{" "}
+                zufriedene Kunden auf Google
+              </span>
+            </a>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-            <div className="h-10 w-px bg-primary/30 animate-pulse" />
-          </div>
         </div>
 
         {/* Right image – desktop only */}
@@ -257,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* ── HOURS ────────────────────────────────────────── */}
-      <section id="oeffnungszeiten" className="py-24 px-6">
+      <section id="oeffnungszeiten" className="py-24 px-6 bg-card">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-14">
             <SectionHeading>Öffnungszeiten</SectionHeading>
@@ -290,6 +388,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── FAQ ──────────────────────────────────────────── */}
+      <section id="faq" className="py-24 px-6">
+        <div className="max-w-xl mx-auto">
+          <div className="text-center mb-14">
+            <SectionHeading>Häufige Fragen</SectionHeading>
+          </div>
+          <div>
+            {faq.map((item) => (
+              <details
+                key={item.q}
+                className="group border-b border-primary/10 py-5"
+              >
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none text-foreground/90 font-medium">
+                  {item.q}
+                  <span className="shrink-0 text-primary/60 text-xl leading-none transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="text-sm text-foreground/70 leading-relaxed mt-3">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CONTACT ──────────────────────────────────────── */}
       <section id="kontakt" className="py-24 px-6 bg-card">
         <div className="max-w-2xl mx-auto">
@@ -303,7 +428,7 @@ export default function Home() {
               <div className="flex items-start gap-4">
                 <MapPin className="w-3.5 h-3.5 text-primary mt-1 shrink-0" />
                 <div>
-                  <p className="text-foreground/85">Rösslistrasse 12</p>
+                  <p className="text-foreground/85">Rösslistrasse 13</p>
                   <p className="text-foreground/85">9230 Flawil</p>
                   <p className="text-muted-foreground text-sm mt-1">Schweiz</p>
                 </div>
@@ -328,6 +453,15 @@ export default function Home() {
                   @blendisbarbershop
                 </a>
               </div>
+              <a
+                href={DIRECTIONS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline underline-offset-4"
+              >
+                <Navigation className="w-3.5 h-3.5 shrink-0" />
+                Route planen
+              </a>
             </div>
 
             {/* Directions */}
@@ -354,7 +488,9 @@ export default function Home() {
           {/* Map */}
           <div className="overflow-hidden border border-primary/15 bg-card h-64 md:h-80">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2679.8!2d9.1089!3d47.4089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479b0b0b0b0b0b0b%3A0x0!2sR%C3%B6sslistrasse%2013%2C%209230%20Flawil%2C%20Switzerland!5e0!3m2!1sen!2sus!4v1234567890"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                `Blendi's Barbershop, ${FULL_ADDRESS}`
+              )}&output=embed`}
               width="100%"
               height="100%"
               style={{
@@ -379,7 +515,7 @@ export default function Home() {
               style={{ filter: "invert(1)", opacity: 0.9 }}
             />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Rösslistrasse 12
+              Rösslistrasse 13
               <br />
               9230 Flawil, Schweiz
             </p>
@@ -413,6 +549,14 @@ export default function Home() {
                   className="text-foreground/75 hover:text-primary transition-colors"
                 >
                   Öffnungszeiten
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  className="text-foreground/75 hover:text-primary transition-colors"
+                >
+                  FAQ
                 </a>
               </li>
               <li>
@@ -468,6 +612,18 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ── STICKY MOBILE CTA ────────────────────────────── */}
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-background/95 backdrop-blur shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.6)]">
+        <a
+          href="https://app.cal.eu/blendis-barbershop/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-center bg-primary text-primary-foreground py-3 text-sm tracking-wide"
+        >
+          Termin buchen
+        </a>
+      </div>
     </main>
   );
 }
