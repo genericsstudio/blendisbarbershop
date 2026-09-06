@@ -131,7 +131,7 @@ export default function AgbPage() {
             Allgemeine Geschäfts&shy;bedingungen
           </h1>
           <p className="text-muted-foreground text-sm mt-5">
-            Stand: Mai 2025 &nbsp;·&nbsp; Blendi&apos;s Barbershop, Rösslistrasse 12,
+            Stand: Mai 2025 &nbsp;·&nbsp; Blendi&apos;s Barbershop, Rösslistrasse 13,
             9230 Flawil
           </p>
         </div>
